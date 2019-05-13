@@ -70,7 +70,7 @@ uint8_t environment::begin()
 
 	BMEsettings.commInterface = I2C_MODE;
 	//Check communication with IC before anything else
-	uint8_t chipID = readRegister(mySensors.BME280, BME280_CHIP_ID_REG); //Should return 0x60 or 0x58
+	uint8_t chipID = readRegister(1, BME280_CHIP_ID_REG); //Should return 0x60 or 0x58
 	if(chipID != 0x58 && chipID != 0x60) // Is this BMP or BME?
 	return(chipID); //This is not BMP nor BME!
 
