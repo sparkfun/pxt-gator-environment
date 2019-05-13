@@ -49,7 +49,7 @@ TODO:
 #define MODE_NORMAL 0b11
 
 //Register names:
-#define BME280_ADDRESS					0x77
+#define BME280_ADDRESS					0x78
 #define BME280_DIG_T1_LSB_REG			0x88
 #define BME280_DIG_T1_MSB_REG			0x89
 #define BME280_DIG_T2_LSB_REG			0x8A
