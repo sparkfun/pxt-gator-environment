@@ -42,7 +42,7 @@ environment::environment( void )
 	BMEsettings.I2CAddress = 0x77; //Default, jumper open is 0x77
 
 	BMEsettings.chipSelectPin = 10; //Select CS pin for SPI
-	CCSsettings.I2CAddress = 0x5B;
+	CCSsettings.I2CAddress = 0x5A;
 	
 	//These are deprecated BMEsettings
 	BMEsettings.runMode = 3; //Normal/Run

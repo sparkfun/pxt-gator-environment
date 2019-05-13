@@ -31,7 +31,7 @@ namespace gatorEnvironment {
 	
 	//% weight=31 
 	//% blockId="gatorEnvironment_begin" 
-	//% block="Initialize gator:Particle sensor"
+	//% block="Initialize gator:Environment sensors"
 	//% shim=gatorEnvironment::begin
 	export function begin(): boolean{
 		return true;
