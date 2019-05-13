@@ -66,8 +66,9 @@ environment::environment( void )
 //****************************************************************************//
 uint8_t environment::begin()
 {
-	uBit.sleep(2);  //Make sure sensor had enough time to turn on. BME280 requires 2ms to start up.
+	//uBit.sleep(2);  //Make sure sensor had enough time to turn on. BME280 requires 2ms to start up.
 
+	BMEsettings.commInterface = I2C_MODE;
 	//Check communication with IC before anything else
 	uint8_t chipID = readRegister(mySensors.BME280, BME280_CHIP_ID_REG); //Should return 0x60 or 0x58
 	if(chipID != 0x58 && chipID != 0x60) // Is this BMP or BME?
@@ -150,18 +151,6 @@ uint8_t environment::begin()
 	{
 		return false;
 	}		
-}
-//Begin comm with BME280 over I2C
-bool environment::beginI2C(MicroBitI2C &wirePort)
-{
-	_hardPort = &wirePort;
-	_wireType = HARD_WIRE;
-
-	BMEsettings.commInterface = I2C_MODE;
-	
-	//BMEsettings.I2CAddress = 0x77; //We assume user has set the I2C address using setI2CAddress()
-	if(begin() == 0x60) return(true); //Begin normal init with these BMEsettings. Should return chip ID of 0x60 for BME
-	return(false);
 }
 
 bool environment::checkForStatusError( void )

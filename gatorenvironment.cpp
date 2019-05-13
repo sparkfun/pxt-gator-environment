@@ -29,10 +29,9 @@ namespace gatorEnvironment {
 	* Initializes the particle sensor
 	*/
 	//%
-	bool begin()
+	void begin()
 	{
-		bool temp = gatorEnvironmentCombo->beginI2C(i2c);
-		return temp;
+		gatorEnvironmentCombo->begin();
 	}
 	
 	//%

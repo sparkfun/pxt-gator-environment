@@ -195,7 +195,6 @@ class environment
 	//Call to apply SensorSettings.
 	//This also gets the SensorCalibration constants
     uint8_t begin( void );
-    bool beginI2C(MicroBitI2C &wirePort); //Called when user provides Wire port
 
 	uint8_t getMode(void); //Get the current mode: sleep, forced, or normal
 	void setMode(uint8_t mode); //Set the current mode
