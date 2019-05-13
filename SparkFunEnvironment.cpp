@@ -72,7 +72,7 @@ void environment::begin()
 	//Check communication with IC before anything else
 
 	//Reading all compensation data, range 0x88:A1, 0xE1:E7
-	calibration.dig_T1 = ((uint16_t)((readRegister(0x77, BME280_DIG_T1_MSB_REG) << 8) + readRegister(0x77, BME280_DIG_T1_LSB_REG)));
+	calibration.dig_T1 = ((uint16_t)((readRegister(BME280_ADDRESS, BME280_DIG_T1_MSB_REG) << 8) + readRegister(BME280_ADDRESS, BME280_DIG_T1_LSB_REG)));
 	calibration.dig_T2 = ((int16_t)((readRegister(BME280_ADDRESS, BME280_DIG_T2_MSB_REG) << 8) + readRegister(BME280_ADDRESS, BME280_DIG_T2_LSB_REG)));
 	calibration.dig_T3 = ((int16_t)((readRegister(BME280_ADDRESS, BME280_DIG_T3_MSB_REG) << 8) + readRegister(BME280_ADDRESS, BME280_DIG_T3_LSB_REG)));
 
@@ -530,7 +530,7 @@ void environment::readRegisterRegion(uint8_t address, uint8_t *outputPointer , u
 
 uint8_t environment::readRegister(uint8_t address, uint8_t offset)
 {
-	return uBit.i2c.readRegister(address, offset);
+	return uBit.i2c.readRegister(0x77, offset);
 }
 
 int16_t environment::readRegisterInt16(uint8_t address, uint8_t offset )
