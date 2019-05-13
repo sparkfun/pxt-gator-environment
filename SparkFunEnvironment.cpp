@@ -70,9 +70,6 @@ void environment::begin()
 
 	BMEsettings.commInterface = I2C_MODE;
 	//Check communication with IC before anything else
-	uint8_t chipID = readRegister(mySensors.BME280, BME280_CHIP_ID_REG); //Should return 0x60 or 0x58
-	if(chipID != 0x58 && chipID != 0x60) // Is this BMP or BME?
-	return(chipID); //This is not BMP nor BME!
 
 	//Reading all compensation data, range 0x88:A1, 0xE1:E7
 	calibration.dig_T1 = ((uint16_t)((readRegister(mySensors.BME280, BME280_DIG_T1_MSB_REG) << 8) + readRegister(mySensors.BME280, BME280_DIG_T1_LSB_REG)));
@@ -108,17 +105,7 @@ void environment::begin()
 	
 	uint8_t data[4] = {0x11,0xE5,0x72,0x8A}; //Reset key
 
-	//restart the core
-	uint8_t readCheck = 0;
-	bool status = true;
-	readCheck = readRegister(mySensors.CCS811, CCS811_HW_ID);
-
-	if( readCheck != 0x81 )
-	{
-		status = false;
-	}
-
-	//Reset the device
+		//Reset the device
 	multiWriteRegister(mySensors.CCS811, CCS811_SW_RESET, data, 4);
 
 	//Tclk = 1/16MHz = 0x0000000625
@@ -129,10 +116,6 @@ void environment::begin()
 	{
 		temp++;
 	}
-
-	if( checkForStatusError() == true ) return false;
-	
-	if( appValid() == false ) return false;
 	
 	//Write 0 bytes to this register to start app
 	uBit.i2c.write(CCSsettings.I2CAddress, (char *)CCS811_APP_START, 1);
