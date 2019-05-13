@@ -49,6 +49,7 @@ TODO:
 #define MODE_NORMAL 0b11
 
 //Register names:
+#define BME280_ADDRESS					0x77
 #define BME280_DIG_T1_LSB_REG			0x88
 #define BME280_DIG_T1_MSB_REG			0x89
 #define BME280_DIG_T2_LSB_REG			0x8A
@@ -96,6 +97,7 @@ TODO:
 #define BME280_HUMIDITY_MSB_REG			0xFD //Humidity MSB
 #define BME280_HUMIDITY_LSB_REG			0xFE //Humidity LSB
 
+#define CCS811_ADDRESS					0x5B
 #define CCS811_STATUS 0x00
 #define CCS811_MEAS_MODE 0x01
 #define CCS811_ALG_RESULT_DATA 0x02
@@ -168,13 +170,6 @@ struct SensorCalibration
 	int8_t dig_H6;
 };
 
-struct Sensor
-{
-	public:
-	const uint8_t BME280 = 1;
-	const uint8_t CCS811 = 2;
-};
-
 //This is the main operational class of the driver.
 
 class environment
@@ -184,7 +179,6 @@ class environment
     SensorSettings BMEsettings;
     SensorSettings CCSsettings;
 	SensorCalibration calibration;
-	Sensor mySensors;
 	int32_t t_fine;
 	
 	//Constructor generates default SensorSettings.
@@ -242,7 +236,7 @@ class environment
 
 	//ReadRegisterRegion takes a uint8 array address as input and reads
 	//a chunk of memory into that array.
-    void readRegisterRegion(uint8_t sensorToRead, uint8_t *outputPointer , uint8_t offset, uint8_t length);
+    void readRegisterRegion(uint8_t address, uint8_t *outputPointer , uint8_t offset, uint8_t length);
 	//readRegister reads one register
     uint8_t readRegister(uint8_t, uint8_t);
     //Reads two regs, LSByte then MSByte order, and concatenates them
@@ -251,7 +245,7 @@ class environment
 	//Writes a byte;
     void writeRegister(uint8_t, uint8_t, uint8_t);
 
-	void multiWriteRegister(uint8_t sensorToRead, uint8_t offset, uint8_t *inputPointer, uint8_t length);
+	void multiWriteRegister(uint8_t address, uint8_t offset, uint8_t *inputPointer, uint8_t length);
 private:
 	uint8_t checkSampleValue(uint8_t userValue); //Checks for valid over sample values
 	uint16_t tVOC = 0;

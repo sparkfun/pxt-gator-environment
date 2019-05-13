@@ -72,26 +72,26 @@ void environment::begin()
 	//Check communication with IC before anything else
 
 	//Reading all compensation data, range 0x88:A1, 0xE1:E7
-	calibration.dig_T1 = ((uint16_t)((readRegister(1, BME280_DIG_T1_MSB_REG) << 8) + readRegister(1, BME280_DIG_T1_LSB_REG)));
-	calibration.dig_T2 = ((int16_t)((readRegister(mySensors.BME280, BME280_DIG_T2_MSB_REG) << 8) + readRegister(mySensors.BME280, BME280_DIG_T2_LSB_REG)));
-	calibration.dig_T3 = ((int16_t)((readRegister(mySensors.BME280, BME280_DIG_T3_MSB_REG) << 8) + readRegister(mySensors.BME280, BME280_DIG_T3_LSB_REG)));
+	calibration.dig_T1 = ((uint16_t)((readRegister(BME280_ADDRESS, BME280_DIG_T1_MSB_REG) << 8) + readRegister(BME280_ADDRESS, BME280_DIG_T1_LSB_REG)));
+	calibration.dig_T2 = ((int16_t)((readRegister(BME280_ADDRESS, BME280_DIG_T2_MSB_REG) << 8) + readRegister(BME280_ADDRESS, BME280_DIG_T2_LSB_REG)));
+	calibration.dig_T3 = ((int16_t)((readRegister(BME280_ADDRESS, BME280_DIG_T3_MSB_REG) << 8) + readRegister(BME280_ADDRESS, BME280_DIG_T3_LSB_REG)));
 
-	calibration.dig_P1 = ((uint16_t)((readRegister(mySensors.BME280, BME280_DIG_P1_MSB_REG) << 8) + readRegister(mySensors.BME280, BME280_DIG_P1_LSB_REG)));
-	calibration.dig_P2 = ((int16_t)((readRegister(mySensors.BME280, BME280_DIG_P2_MSB_REG) << 8) + readRegister(mySensors.BME280, BME280_DIG_P2_LSB_REG)));
-	calibration.dig_P3 = ((int16_t)((readRegister(mySensors.BME280, BME280_DIG_P3_MSB_REG) << 8) + readRegister(mySensors.BME280, BME280_DIG_P3_LSB_REG)));
-	calibration.dig_P4 = ((int16_t)((readRegister(mySensors.BME280, BME280_DIG_P4_MSB_REG) << 8) + readRegister(mySensors.BME280, BME280_DIG_P4_LSB_REG)));
-	calibration.dig_P5 = ((int16_t)((readRegister(mySensors.BME280, BME280_DIG_P5_MSB_REG) << 8) + readRegister(mySensors.BME280, BME280_DIG_P5_LSB_REG)));
-	calibration.dig_P6 = ((int16_t)((readRegister(mySensors.BME280, BME280_DIG_P6_MSB_REG) << 8) + readRegister(mySensors.BME280, BME280_DIG_P6_LSB_REG)));
-	calibration.dig_P7 = ((int16_t)((readRegister(mySensors.BME280, BME280_DIG_P7_MSB_REG) << 8) + readRegister(mySensors.BME280, BME280_DIG_P7_LSB_REG)));
-	calibration.dig_P8 = ((int16_t)((readRegister(mySensors.BME280, BME280_DIG_P8_MSB_REG) << 8) + readRegister(mySensors.BME280, BME280_DIG_P8_LSB_REG)));
-	calibration.dig_P9 = ((int16_t)((readRegister(mySensors.BME280, BME280_DIG_P9_MSB_REG) << 8) + readRegister(mySensors.BME280, BME280_DIG_P9_LSB_REG)));
+	calibration.dig_P1 = ((uint16_t)((readRegister(BME280_ADDRESS, BME280_DIG_P1_MSB_REG) << 8) + readRegister(BME280_ADDRESS, BME280_DIG_P1_LSB_REG)));
+	calibration.dig_P2 = ((int16_t)((readRegister(BME280_ADDRESS, BME280_DIG_P2_MSB_REG) << 8) + readRegister(BME280_ADDRESS, BME280_DIG_P2_LSB_REG)));
+	calibration.dig_P3 = ((int16_t)((readRegister(BME280_ADDRESS, BME280_DIG_P3_MSB_REG) << 8) + readRegister(BME280_ADDRESS, BME280_DIG_P3_LSB_REG)));
+	calibration.dig_P4 = ((int16_t)((readRegister(BME280_ADDRESS, BME280_DIG_P4_MSB_REG) << 8) + readRegister(BME280_ADDRESS, BME280_DIG_P4_LSB_REG)));
+	calibration.dig_P5 = ((int16_t)((readRegister(BME280_ADDRESS, BME280_DIG_P5_MSB_REG) << 8) + readRegister(BME280_ADDRESS, BME280_DIG_P5_LSB_REG)));
+	calibration.dig_P6 = ((int16_t)((readRegister(BME280_ADDRESS, BME280_DIG_P6_MSB_REG) << 8) + readRegister(BME280_ADDRESS, BME280_DIG_P6_LSB_REG)));
+	calibration.dig_P7 = ((int16_t)((readRegister(BME280_ADDRESS, BME280_DIG_P7_MSB_REG) << 8) + readRegister(BME280_ADDRESS, BME280_DIG_P7_LSB_REG)));
+	calibration.dig_P8 = ((int16_t)((readRegister(BME280_ADDRESS, BME280_DIG_P8_MSB_REG) << 8) + readRegister(BME280_ADDRESS, BME280_DIG_P8_LSB_REG)));
+	calibration.dig_P9 = ((int16_t)((readRegister(BME280_ADDRESS, BME280_DIG_P9_MSB_REG) << 8) + readRegister(BME280_ADDRESS, BME280_DIG_P9_LSB_REG)));
 
-	calibration.dig_H1 = ((uint8_t)(readRegister(mySensors.BME280, BME280_DIG_H1_REG)));
-	calibration.dig_H2 = ((int16_t)((readRegister(mySensors.BME280, BME280_DIG_H2_MSB_REG) << 8) + readRegister(mySensors.BME280, BME280_DIG_H2_LSB_REG)));
-	calibration.dig_H3 = ((uint8_t)(readRegister(mySensors.BME280, BME280_DIG_H3_REG)));
-	calibration.dig_H4 = ((int16_t)((readRegister(mySensors.BME280, BME280_DIG_H4_MSB_REG) << 4) + (readRegister(mySensors.BME280, BME280_DIG_H4_LSB_REG) & 0x0F)));
-	calibration.dig_H5 = ((int16_t)((readRegister(mySensors.BME280, BME280_DIG_H5_MSB_REG) << 4) + ((readRegister(mySensors.BME280, BME280_DIG_H4_LSB_REG) >> 4) & 0x0F)));
-	calibration.dig_H6 = ((int8_t)readRegister(mySensors.BME280, BME280_DIG_H6_REG));
+	calibration.dig_H1 = ((uint8_t)(readRegister(BME280_ADDRESS, BME280_DIG_H1_REG)));
+	calibration.dig_H2 = ((int16_t)((readRegister(BME280_ADDRESS, BME280_DIG_H2_MSB_REG) << 8) + readRegister(BME280_ADDRESS, BME280_DIG_H2_LSB_REG)));
+	calibration.dig_H3 = ((uint8_t)(readRegister(BME280_ADDRESS, BME280_DIG_H3_REG)));
+	calibration.dig_H4 = ((int16_t)((readRegister(BME280_ADDRESS, BME280_DIG_H4_MSB_REG) << 4) + (readRegister(BME280_ADDRESS, BME280_DIG_H4_LSB_REG) & 0x0F)));
+	calibration.dig_H5 = ((int16_t)((readRegister(BME280_ADDRESS, BME280_DIG_H5_MSB_REG) << 4) + ((readRegister(BME280_ADDRESS, BME280_DIG_H4_LSB_REG) >> 4) & 0x0F)));
+	calibration.dig_H6 = ((int8_t)readRegister(BME280_ADDRESS, BME280_DIG_H6_REG));
 
 	//Most of the time the sensor will be init with default values
 	//But in case user has old/deprecated code, use the BMEsettings.x values
@@ -106,7 +106,7 @@ void environment::begin()
 	uint8_t data[4] = {0x11,0xE5,0x72,0x8A}; //Reset key
 
 		//Reset the device
-	multiWriteRegister(mySensors.CCS811, CCS811_SW_RESET, data, 4);
+	multiWriteRegister(CCS811_ADDRESS, CCS811_SW_RESET, data, 4);
 
 	//Tclk = 1/16MHz = 0x0000000625
 	//0.001 s / tclk = 16000 counts
@@ -129,14 +129,14 @@ void environment::begin()
 
 bool environment::checkForStatusError( void )
 {
-	uint8_t value = readRegister(mySensors.CCS811, CCS811_STATUS);
+	uint8_t value = readRegister(CCS811_ADDRESS, CCS811_STATUS);
 	return (value & 1 << 0);
 }
 
 //Checks to see if APP_VALID flag is set in the status register
 bool environment::appValid( void )
 {
-	uint8_t value = readRegister(mySensors.CCS811, CCS811_STATUS);
+	uint8_t value = readRegister(CCS811_ADDRESS, CCS811_STATUS);
 	return (value & 1 << 4);
 }
 
@@ -148,10 +148,10 @@ void environment::setMode(uint8_t mode)
 {
 	if(mode > 0b11) mode = 0; //Error check. Default to sleep mode
 	
-	uint8_t controlData = readRegister(mySensors.BME280, BME280_CTRL_MEAS_REG);
+	uint8_t controlData = readRegister(BME280_ADDRESS, BME280_CTRL_MEAS_REG);
 	controlData &= ~( (1<<1) | (1<<0) ); //Clear the mode[1:0] bits
 	controlData |= mode; //Set
-	writeRegister(mySensors.BME280, BME280_CTRL_MEAS_REG, controlData);
+	writeRegister(BME280_ADDRESS, BME280_CTRL_MEAS_REG, controlData);
 }
 
 //Mode 0 = Idle
@@ -163,10 +163,10 @@ void environment::setDriveMode( uint8_t mode )
 {
 	if (mode > 4) mode = 4; //sanitize input
 
-	uint8_t value = readRegister(mySensors.CCS811, CCS811_MEAS_MODE); //Read what's currently there
+	uint8_t value = readRegister(CCS811_ADDRESS, CCS811_MEAS_MODE); //Read what's currently there
 	value &= ~(0b00000111 << 4); //Clear DRIVE_MODE bits
 	value |= (mode << 4); //Mask in mode
-	writeRegister(mySensors.CCS811, CCS811_MEAS_MODE, value);
+	writeRegister(CCS811_ADDRESS, CCS811_MEAS_MODE, value);
 
 }
 
@@ -181,7 +181,7 @@ void environment::setDriveMode( uint8_t mode )
 void environment::readAlgorithmResults( void )
 {
 	uint8_t data[4];
-	readRegisterRegion(mySensors.CCS811, data, CCS811_ALG_RESULT_DATA, 4);
+	readRegisterRegion(CCS811_ADDRESS, data, CCS811_ALG_RESULT_DATA, 4);
 	// Data ordered:
 	// co2MSB, co2LSB, tvocMSB, tvocLSB
 
@@ -205,7 +205,7 @@ uint16_t environment::getCO2( void )
 // 11 = Normal mode
 uint8_t environment::getMode()
 {
-	uint8_t controlData = readRegister(mySensors.BME280, BME280_CTRL_MEAS_REG);
+	uint8_t controlData = readRegister(BME280_ADDRESS, BME280_CTRL_MEAS_REG);
 	return(controlData & 0b00000011); //Clear bits 7 through 2
 }
 
@@ -223,10 +223,10 @@ void environment::setStandbyTime(uint8_t timeSetting)
 {
 	if(timeSetting > 0b111) timeSetting = 0; //Error check. Default to 0.5ms
 	
-	uint8_t controlData = readRegister(mySensors.BME280, BME280_CONFIG_REG);
+	uint8_t controlData = readRegister(BME280_ADDRESS, BME280_CONFIG_REG);
 	controlData &= ~( (1<<7) | (1<<6) | (1<<5) ); //Clear the 7/6/5 bits
 	controlData |= (timeSetting << 5); //Align with bits 7/6/5
-	writeRegister(mySensors.BME280, BME280_CONFIG_REG, controlData);
+	writeRegister(BME280_ADDRESS, BME280_CONFIG_REG, controlData);
 }
 
 //Set the filter bits in the config register
@@ -240,10 +240,10 @@ void environment::setFilter(uint8_t filterSetting)
 {
 	if(filterSetting > 0b111) filterSetting = 0; //Error check. Default to filter off
 	
-	uint8_t controlData = readRegister(mySensors.BME280, BME280_CONFIG_REG);
+	uint8_t controlData = readRegister(BME280_ADDRESS, BME280_CONFIG_REG);
 	controlData &= ~( (1<<4) | (1<<3) | (1<<2) ); //Clear the 4/3/2 bits
 	controlData |= (filterSetting << 2); //Align with bits 4/3/2
-	writeRegister(mySensors.BME280, BME280_CONFIG_REG, controlData);
+	writeRegister(BME280_ADDRESS, BME280_CONFIG_REG, controlData);
 }
 
 //Set the temperature oversample value
@@ -258,10 +258,10 @@ void environment::setTempOverSample(uint8_t overSampleAmount)
 	setMode(MODE_SLEEP); //Config will only be writeable in sleep mode, so first go to sleep mode
 
 	//Set the osrs_t bits (7, 6, 5) to overSampleAmount
-	uint8_t controlData = readRegister(mySensors.BME280, BME280_CTRL_MEAS_REG);
+	uint8_t controlData = readRegister(BME280_ADDRESS, BME280_CTRL_MEAS_REG);
 	controlData &= ~( (1<<7) | (1<<6) | (1<<5) ); //Clear bits 765
 	controlData |= overSampleAmount << 5; //Align overSampleAmount to bits 7/6/5
-	writeRegister(mySensors.BME280, BME280_CTRL_MEAS_REG, controlData);
+	writeRegister(BME280_ADDRESS, BME280_CTRL_MEAS_REG, controlData);
 	
 	setMode(originalMode); //Return to the original user's choice
 }
@@ -278,10 +278,10 @@ void environment::setPressureOverSample(uint8_t overSampleAmount)
 	setMode(MODE_SLEEP); //Config will only be writeable in sleep mode, so first go to sleep mode
 
 	//Set the osrs_p bits (4, 3, 2) to overSampleAmount
-	uint8_t controlData = readRegister(mySensors.BME280, BME280_CTRL_MEAS_REG);
+	uint8_t controlData = readRegister(BME280_ADDRESS, BME280_CTRL_MEAS_REG);
 	controlData &= ~( (1<<4) | (1<<3) | (1<<2) ); //Clear bits 432
 	controlData |= overSampleAmount << 2; //Align overSampleAmount to bits 4/3/2
-	writeRegister(mySensors.BME280, BME280_CTRL_MEAS_REG, controlData);
+	writeRegister(BME280_ADDRESS, BME280_CTRL_MEAS_REG, controlData);
 	
 	setMode(originalMode); //Return to the original user's choice
 }
@@ -298,10 +298,10 @@ void environment::setHumidityOverSample(uint8_t overSampleAmount)
 	setMode(MODE_SLEEP); //Config will only be writeable in sleep mode, so first go to sleep mode
 
 	//Set the osrs_h bits (2, 1, 0) to overSampleAmount
-	uint8_t controlData = readRegister(mySensors.BME280, BME280_CTRL_HUMIDITY_REG);
+	uint8_t controlData = readRegister(BME280_ADDRESS, BME280_CTRL_HUMIDITY_REG);
 	controlData &= ~( (1<<2) | (1<<1) | (1<<0) ); //Clear bits 2/1/0
 	controlData |= overSampleAmount << 0; //Align overSampleAmount to bits 2/1/0
-	writeRegister(mySensors.BME280, BME280_CTRL_HUMIDITY_REG, controlData);
+	writeRegister(BME280_ADDRESS, BME280_CTRL_HUMIDITY_REG, controlData);
 
 	setMode(originalMode); //Return to the original user's choice
 }
@@ -347,14 +347,14 @@ void environment::setI2CAddress(uint8_t address)
 //Check the measuring bit and return true while device is taking measurement
 bool environment::isMeasuring(void)
 {
-	uint8_t stat = readRegister(mySensors.BME280, BME280_STAT_REG);
+	uint8_t stat = readRegister(BME280_ADDRESS, BME280_STAT_REG);
 	return(stat & (1<<3)); //If the measuring bit (3) is set, return true
 }
 
 //Strictly resets.  Run .begin() afterwards
 void environment::reset( void )
 {
-	writeRegister(mySensors.BME280, BME280_RST_REG, 0xB6);
+	writeRegister(BME280_ADDRESS, BME280_RST_REG, 0xB6);
 	
 }
 
@@ -369,7 +369,7 @@ float environment::readFloatPressure( void )
 	// Returns pressure in Pa as unsigned 32 bit integer in Q24.8 format (24 integer bits and 8 fractional bits).
 	// Output value of “24674867” represents 24674867/256 = 96386.2 Pa = 963.862 hPa
     uint8_t buffer[3];
-	readRegisterRegion(mySensors.BME280, buffer, BME280_PRESSURE_MSB_REG, 3);
+	readRegisterRegion(BME280_ADDRESS, buffer, BME280_PRESSURE_MSB_REG, 3);
     int32_t adc_P = ((uint32_t)buffer[0] << 12) | ((uint32_t)buffer[1] << 4) | ((buffer[2] >> 4) & 0x0F);
 	
 	int64_t var1, var2, p_acc;
@@ -435,7 +435,7 @@ float environment::readFloatHumidity( void )
 	// Returns humidity in %RH as unsigned 32 bit integer in Q22. 10 format (22 integer and 10 fractional bits).
 	// Output value of “47445” represents 47445/1024 = 46. 333 %RH
     uint8_t buffer[2];
-	readRegisterRegion(mySensors.BME280, buffer, BME280_HUMIDITY_MSB_REG, 2);
+	readRegisterRegion(BME280_ADDRESS, buffer, BME280_HUMIDITY_MSB_REG, 2);
     int32_t adc_H = ((uint32_t)buffer[0] << 8) | ((uint32_t)buffer[1]);
 	
 	int32_t var1;
@@ -463,7 +463,7 @@ float environment::readTempC( void )
 
 	//get the reading (adc_T);
     uint8_t buffer[3];
-	readRegisterRegion(mySensors.BME280, buffer, BME280_TEMPERATURE_MSB_REG, 3);
+	readRegisterRegion(BME280_ADDRESS, buffer, BME280_TEMPERATURE_MSB_REG, 3);
     int32_t adc_T = ((uint32_t)buffer[0] << 12) | ((uint32_t)buffer[1] << 4) | ((buffer[2] >> 4) & 0x0F);
 
 	//By datasheet, calibrate
@@ -523,69 +523,36 @@ double environment::dewPointF(void)
 //  Utility
 //
 //****************************************************************************//
-void environment::readRegisterRegion(uint8_t sensorToRead, uint8_t *outputPointer , uint8_t offset, uint8_t length)
+void environment::readRegisterRegion(uint8_t address, uint8_t *outputPointer , uint8_t offset, uint8_t length)
 {
-	switch(sensorToRead)
-	{
-		case 1:
-			uBit.i2c.readRegister(BMEsettings.I2CAddress, offset, outputPointer, length);
-			break;
-		case 2:
-			uBit.i2c.readRegister(CCSsettings.I2CAddress, offset, outputPointer, length);
-			break;
-	}
+	uBit.i2c.readRegister(address, offset, outputPointer, length);	
 }
 
-uint8_t environment::readRegister(uint8_t sensorToRead, uint8_t offset)
+uint8_t environment::readRegister(uint8_t address, uint8_t offset)
 {
-	switch(sensorToRead)
-	{
-		case 1:
-			return uBit.i2c.readRegister(0x77, offset);
-			break;
-		case 2:
-			return uBit.i2c.readRegister(CCSsettings.I2CAddress, offset);
-			break;
-	}
+	return uBit.i2c.readRegister(address, offset);
 }
 
-int16_t environment::readRegisterInt16(uint8_t sensorToRead, uint8_t offset )
+int16_t environment::readRegisterInt16(uint8_t address, uint8_t offset )
 {
 	uint8_t myBuffer[2];
 	
-	readRegisterRegion(sensorToRead, myBuffer, offset, 2);  //Does memory transfer
+	readRegisterRegion(address, myBuffer, offset, 2);  //Does memory transfer
 	int16_t output = (int16_t)myBuffer[0] | int16_t(myBuffer[1] << 8);
 	
 	return output;
 }
 
-void environment::writeRegister(uint8_t sensorToRead, uint8_t offset, uint8_t dataToWrite)
+void environment::writeRegister(uint8_t address, uint8_t offset, uint8_t dataToWrite)
 {
-	switch(sensorToRead)
-	{
-		case 1:
-			uBit.i2c.writeRegister(BMEsettings.I2CAddress, offset, dataToWrite);
-			break;
-		case 2:
-			uBit.i2c.writeRegister(CCSsettings.I2CAddress, offset, dataToWrite);
-			break;
-	}
+	uBit.i2c.writeRegister(address, offset, dataToWrite);
 }
 
-void environment::multiWriteRegister(uint8_t sensorToRead, uint8_t offset, uint8_t *inputPointer, uint8_t length)
+void environment::multiWriteRegister(uint8_t address, uint8_t offset, uint8_t *inputPointer, uint8_t length)
 {
 	uint8_t realLength = length + 1;
 	char temp[realLength];
 	temp[0] = offset;
 	memcpy(&temp[1], inputPointer, length); //tempLong is 4 bytes, we only need 3
-	switch(sensorToRead)
-	{
-		case 1:
-			uBit.i2c.write(BMEsettings.I2CAddress, temp, realLength);
-			break;
-		case 2:
-			uBit.i2c.write(CCSsettings.I2CAddress, temp, realLength);
-			break;
-	}
-
+	uBit.i2c.write(address, temp, realLength);
 }
