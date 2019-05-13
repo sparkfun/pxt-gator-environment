@@ -64,7 +64,7 @@ environment::environment( void )
 //  configure before calling .begin();
 //
 //****************************************************************************//
-uint8_t environment::begin()
+void environment::begin()
 {
 	//uBit.sleep(2);  //Make sure sensor had enough time to turn on. BME280 requires 2ms to start up.
 
@@ -141,16 +141,7 @@ uint8_t environment::begin()
 	// Without a delay here, the CCS811 and I2C can be put in a bad state.
 	// Seems to work with 50us delay, but make a bit longer to be sure.
 	
-	setDriveMode(1); //Read every second
-	if (status)
-	{
-		return(readRegister(mySensors.BME280, BME280_CHIP_ID_REG)); //Should return 0x60
-
-	}
-	else
-	{
-		return false;
-	}		
+	setDriveMode(1); //Read every second	
 }
 
 bool environment::checkForStatusError( void )

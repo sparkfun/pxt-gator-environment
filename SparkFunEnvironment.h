@@ -194,7 +194,7 @@ class environment
 	
 	//Call to apply SensorSettings.
 	//This also gets the SensorCalibration constants
-    uint8_t begin( void );
+    void begin( void );
 
 	uint8_t getMode(void); //Get the current mode: sleep, forced, or normal
 	void setMode(uint8_t mode); //Set the current mode
