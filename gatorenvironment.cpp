@@ -50,9 +50,11 @@ namespace gatorEnvironment {
 				value = gatorEnvironmentCombo->readFloatPressure();
 				break;
 			case 4:
+				gatorEnvironmentCombo->readAlgorithmResults();
 				value = gatorEnvironmentCombo->getCO2();
 				break;
 			case 5:
+				gatorEnvironmentCombo->readAlgorithmResults();
 				value = gatorEnvironmentCombo->getTVOC();
 				break;
 			default:
