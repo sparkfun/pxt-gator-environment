@@ -42,6 +42,6 @@ namespace gatorEnvironment {
 	//% block="Get %measurementType | value"
 	//% shim=gatorEnvironment::getMeasurement
 	export function getMeasurement(type: measurementType): number{
-		return 0.1
+		return 0
 	}
 }
