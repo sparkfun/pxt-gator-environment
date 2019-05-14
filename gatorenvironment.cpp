@@ -37,26 +37,28 @@ namespace gatorEnvironment {
 	//%
 	float getMeasurement(uint8_t type)
 	{
+		float value;
 		switch (type)
 		{
 			case 1:
-				return gatorEnvironmentCombo->readTempC();
+				value = gatorEnvironmentCombo->readTempC();
 				break;
 			case 2:
-				return gatorEnvironmentCombo->readFloatHumidity();
+				value = gatorEnvironmentCombo->readFloatHumidity();
 				break;
 			case 3:
-				return gatorEnvironmentCombo->readFloatPressure();
+				value = gatorEnvironmentCombo->readFloatPressure();
 				break;
 			case 4:
-				return gatorEnvironmentCombo->getCO2();
+				value = gatorEnvironmentCombo->getCO2();
 				break;
 			case 5:
-				return gatorEnvironmentCombo->getTVOC();
+				value = gatorEnvironmentCombo->getTVOC();
 				break;
 			default:
-				return 0;
+				value = 0;
 				break;
 		}
+		return value;
 	}
 }
