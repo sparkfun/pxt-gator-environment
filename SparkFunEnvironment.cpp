@@ -104,6 +104,8 @@ void environment::begin()
 	setMode(MODE_NORMAL); //Go!
 	
 	uint8_t data[4] = {0x11,0xE5,0x72,0x8A}; //Reset key
+	
+	readRegister(CCS811_ADDRESS, CCS811_HW_ID);
 
 		//Reset the device
 	multiWriteRegister(CCS811_ADDRESS, CCS811_SW_RESET, data, 4);
@@ -117,6 +119,9 @@ void environment::begin()
 		temp++;
 	}
 	
+	checkForStatusError();
+	
+	appValid();
 	//Write 0 bytes to this register to start app
 	//uBit.i2c.write(CCS811_ADDRESS, CCS811_APP_START, 1);
 	writeRegister(CCS811_ADDRESS, CCS811_APP_START, 0xF4);
