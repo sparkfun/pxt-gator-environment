@@ -118,7 +118,7 @@ void environment::begin()
 	}
 	
 	//Write 0 bytes to this register to start app
-	uBit.i2c.write(CCSsettings.I2CAddress, (char *)CCS811_APP_START, 1);
+	uBit.i2c.write(CCS811_ADDRESS, (char *)CCS811_APP_START, 1);
 	
 	//Added from issue 6
 	// Without a delay here, the CCS811 and I2C can be put in a bad state.
