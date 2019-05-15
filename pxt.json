@@ -1,6 +1,6 @@
 {
     "name": "gatorenvironment",
-    "version": "0.0.24",
+    "version": "0.0.25",
     "description": "SparkFun gator:Particle Particle Sensor",
     "license": "MIT",
     "dependencies": {
