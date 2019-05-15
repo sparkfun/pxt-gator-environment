@@ -44,7 +44,7 @@ namespace gatorEnvironment {
 				value = gatorEnvironmentCombo->readTempC();
 				break;
 			case 2:
-				value = gatorEnvironmentCombo->readTempC();
+				value = gatorEnvironmentCombo->readTempF();
 				break;
 			case 3:
 				value = gatorEnvironmentCombo->readFloatHumidity();
