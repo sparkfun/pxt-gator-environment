@@ -44,7 +44,6 @@ TODO:
 #define HARD_WIRE 1
 #define SOFT_WIRE 2
 
-
 //Class SensorSettings.  This object is used to hold settings data.  The application
 //uses this classes' data directly.  The settings are adopted and sent to the sensor
 //at special times, such as .begin.  Some are used for doing math.
@@ -81,8 +80,6 @@ class environment
 	void setHumidityOverSample(uint8_t overSampleAmount); //Set the humidity sample mode
 	void setStandbyTime(uint8_t timeSetting); //Set the standby time between measurements
 	void setFilter(uint8_t filterSetting); //Set the filter
-	
-	void setI2CAddress(uint8_t i2caddress); //Set the address the library should use to communicate. Use if address jumper is closed (0x76).
 
 	void setReferencePressure(float refPressure); //Allows user to set local sea level reference pressure
 	float getReferencePressure();
@@ -137,6 +134,17 @@ private:
     MicroBitI2C *_hardPort = NO_WIRE; //The generic connection to user's chosen I2C hardware
 	
   	float _referencePressure = 101325.0; //Default but is changeable
+
+	//Main Interface and mode settings
+	
+	//Deprecated settings
+	uint8_t BMErunMode;
+	uint8_t BMEtStandby;
+	uint8_t BMEfilter;
+	uint8_t BMEtempOverSample;
+	uint8_t BMEpressOverSample;
+	uint8_t BMEhumidOverSample;
+    float BMEtempCorrection; // correction of temperature - added to the result
 };
 
 #endif  // End of __BME280_H__ definition check

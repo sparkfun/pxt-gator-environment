@@ -106,25 +106,6 @@ float humidity = 0;
 
 int32_t t_fine;	
 
-struct SensorSettings
-{
-  public:
-	
-	//Main Interface and mode settings
-    uint8_t commInterface;
-    uint8_t I2CAddress;
-    uint8_t chipSelectPin;
-	
-	//Deprecated settings
-	uint8_t runMode;
-	uint8_t tStandby;
-	uint8_t filter;
-	uint8_t tempOverSample;
-	uint8_t pressOverSample;
-	uint8_t humidOverSample;
-    float tempCorrection; // correction of temperature - added to the result
-};
-
 //Used to hold the calibration constants.  These are used
 //by the driver as measurements are being taking
 struct SensorCalibration
@@ -152,7 +133,6 @@ struct SensorCalibration
 	int8_t dig_H6;
 };
 
-SensorSettings BMEsettings;
 SensorCalibration calibration;
 
 //****************************************************************************//
@@ -164,21 +144,14 @@ SensorCalibration calibration;
 //Constructor -- Specifies default configuration
 environment::environment( void )
 {
-	//Construct with these default BMEsettings
-
-	BMEsettings.commInterface = I2C_MODE; //Default to I2C
-
-
-	BMEsettings.chipSelectPin = 10; //Select CS pin for SPI
-	
 	//These are deprecated BMEsettings
-	BMEsettings.runMode = 3; //Normal/Run
-	BMEsettings.tStandby = 0; //0.5ms
-	BMEsettings.filter = 0; //Filter off
-	BMEsettings.tempOverSample = 1;
-	BMEsettings.pressOverSample = 1;
-	BMEsettings.humidOverSample = 1;
-    BMEsettings.tempCorrection = 0.0; // correction of temperature - added to the result
+	BMErunMode = 3; //Normal/Run
+	BMEtStandby = 0; //0.5ms
+	BMEfilter = 0; //Filter off
+	BMEtempOverSample = 1;
+	BMEpressOverSample = 1;
+	BMEhumidOverSample = 1;
+    BMEtempCorrection = 0.0; // correction of temperature - added to the result
 }
 
 
@@ -195,7 +168,6 @@ void environment::begin()
 {
 	uBit.sleep(2);  //Make sure sensor had enough time to turn on. BME280 requires 2ms to start up.
 
-	BMEsettings.commInterface = I2C_MODE;
 	//Check communication with IC before anything else
 
 	//Reading all compensation data, range 0x88:A1, 0xE1:E7
@@ -222,13 +194,13 @@ void environment::begin()
 
 	//Most of the time the sensor will be init with default values
 	//But in case user has old/deprecated code, use the BMEsettings.x values
-	setStandbyTime(0);
-	setFilter(0);
-	setPressureOverSample(1); //Default of 1x oversample
-	setHumidityOverSample(1); //Default of 1x oversample
-	setTempOverSample(1); //Default of 1x oversample
+	setStandbyTime(BMEtStandby);
+	setFilter(BMEfilter);
+	setPressureOverSample(BMEtempOverSample); //Default of 1x oversample
+	setHumidityOverSample(BMEpressOverSample); //Default of 1x oversample
+	setTempOverSample(BMEhumidOverSample); //Default of 1x oversample
 	
-	setMode(3); //Go!
+	setMode(BMEtempCorrection); //Go!
 	
 	uint8_t data[4] = {0x11,0xE5,0x72,0x8A}; //Reset key
 	
@@ -476,13 +448,6 @@ uint8_t environment::checkSampleValue(uint8_t userValue)
 	}
 }
 
-//Set the global setting for the I2C address we want to communicate with
-//Default is 0x77
-void environment::setI2CAddress(uint8_t address)
-{
-	BMEsettings.I2CAddress = address; //Set the I2C address for this device
-}
-
 //Check the measuring bit and return true while device is taking measurement
 bool environment::isMeasuring(void)
 {
@@ -615,7 +580,7 @@ float environment::readTempC( void )
 	t_fine = var1 + var2;
 	float output = (t_fine * 5 + 128) >> 8;
 
-	output = output / 100 + BMEsettings.tempCorrection;
+	output = output / 100 + BMEtempCorrection;
 	
 	return output;
 }
