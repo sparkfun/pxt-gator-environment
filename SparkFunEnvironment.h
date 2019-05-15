@@ -60,51 +60,7 @@ TODO:
 //A power user would strip out SensorSettings entirely, and send specific read and
 //write command directly to the IC. (ST #defines below)
 //
-struct SensorSettings
-{
-  public:
-	
-	//Main Interface and mode settings
-    uint8_t commInterface;
-    uint8_t I2CAddress;
-    uint8_t chipSelectPin;
-	
-	//Deprecated settings
-	uint8_t runMode;
-	uint8_t tStandby;
-	uint8_t filter;
-	uint8_t tempOverSample;
-	uint8_t pressOverSample;
-	uint8_t humidOverSample;
-    float tempCorrection; // correction of temperature - added to the result
-};
 
-//Used to hold the calibration constants.  These are used
-//by the driver as measurements are being taking
-struct SensorCalibration
-{
-  public:
-	uint16_t dig_T1;
-	int16_t dig_T2;
-	int16_t dig_T3;
-	
-	uint16_t dig_P1;
-	int16_t dig_P2;
-	int16_t dig_P3;
-	int16_t dig_P4;
-	int16_t dig_P5;
-	int16_t dig_P6;
-	int16_t dig_P7;
-	int16_t dig_P8;
-	int16_t dig_P9;
-	
-	uint8_t dig_H1;
-	int16_t dig_H2;
-	uint8_t dig_H3;
-	int16_t dig_H4;
-	int16_t dig_H5;
-	int8_t dig_H6;
-};
 
 //This is the main operational class of the driver.
 
@@ -112,9 +68,6 @@ class environment
 {
   public:
     //settings
-    SensorSettings BMEsettings;
-    SensorSettings CCSsettings;
-	SensorCalibration calibration;
 	int32_t t_fine;	
 	
 	//Constructor generates default SensorSettings.

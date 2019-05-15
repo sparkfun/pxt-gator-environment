@@ -60,7 +60,7 @@ static const char BME280_DIG_H4_MSB_REG		=	0xE4;
 static const char BME280_DIG_H4_LSB_REG		=	0xE5;
 static const char BME280_DIG_H5_MSB_REG		=	0xE6;
 static const char BME280_DIG_H6_REG			=	0xE7;
-static const char BME280_CTRL_HUMIDITY_REG	=	0xF2;//Ctrl Humidity Reg
+static const char BME280_CTRL_HUMIDITY_REG	=	0xF2; //Ctrl Humidity Reg
 static const char BME280_STAT_REG			=	0xF3; //Status Reg
 static const char BME280_CTRL_MEAS_REG		=	0xF4; //Ctrl Measure Reg
 static const char BME280_CONFIG_REG			=	0xF5; //Configuration Reg
@@ -95,6 +95,57 @@ MicroBit uBit;
 
 uint16_t tVOC = 0;
 uint16_t CO2 = 0;
+
+struct SensorSettings
+{
+  public:
+	
+	//Main Interface and mode settings
+    uint8_t commInterface;
+    uint8_t I2CAddress;
+    uint8_t chipSelectPin;
+	
+	//Deprecated settings
+	uint8_t runMode;
+	uint8_t tStandby;
+	uint8_t filter;
+	uint8_t tempOverSample;
+	uint8_t pressOverSample;
+	uint8_t humidOverSample;
+    float tempCorrection; // correction of temperature - added to the result
+};
+
+//Used to hold the calibration constants.  These are used
+//by the driver as measurements are being taking
+struct SensorCalibration
+{
+  public:
+	uint16_t dig_T1;
+	int16_t dig_T2;
+	int16_t dig_T3;
+	
+	uint16_t dig_P1;
+	int16_t dig_P2;
+	int16_t dig_P3;
+	int16_t dig_P4;
+	int16_t dig_P5;
+	int16_t dig_P6;
+	int16_t dig_P7;
+	int16_t dig_P8;
+	int16_t dig_P9;
+	
+	uint8_t dig_H1;
+	int16_t dig_H2;
+	uint8_t dig_H3;
+	int16_t dig_H4;
+	int16_t dig_H5;
+	int8_t dig_H6;
+};
+
+SensorSettings BMEsettings;
+SensorSettings CCSsettings;
+SensorCalibration calibration;
+
 //****************************************************************************//
 //
 //  BMEsettings and configuration
@@ -108,10 +159,8 @@ environment::environment( void )
 
 	BMEsettings.commInterface = I2C_MODE; //Default to I2C
 
-	BMEsettings.I2CAddress = 0x77; //Default, jumper open is 0x77
 
 	BMEsettings.chipSelectPin = 10; //Select CS pin for SPI
-	CCSsettings.I2CAddress = 0x5A;
 	
 	//These are deprecated BMEsettings
 	BMEsettings.runMode = 3; //Normal/Run
