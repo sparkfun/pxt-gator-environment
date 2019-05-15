@@ -53,15 +53,15 @@ namespace gatorEnvironment {
 				if (gatorEnvironmentCombo->dataAvailable())
 				{
 					gatorEnvironmentCombo->readAlgorithmResults();
-					value = gatorEnvironmentCombo->getCO2();
 				}
+				value = gatorEnvironmentCombo->getCO2();
 				break;
 			case 5:
 				if (gatorEnvironmentCombo->dataAvailable())
 				{
 					gatorEnvironmentCombo->readAlgorithmResults();
-					value = gatorEnvironmentCombo->getTVOC();
 				}
+				value = gatorEnvironmentCombo->getTVOC();
 				break;
 			default:
 				value = 0;
