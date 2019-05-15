@@ -95,6 +95,9 @@ MicroBit uBit;
 
 uint16_t tVOC = 0;
 uint16_t CO2 = 0;
+float temperature = 0;
+float pressure = 0;
+float humidity = 0;
 
 struct SensorSettings
 {
@@ -143,7 +146,6 @@ struct SensorCalibration
 };
 
 SensorSettings BMEsettings;
-SensorSettings CCSsettings;
 SensorCalibration calibration;
 
 //****************************************************************************//
@@ -519,7 +521,8 @@ float environment::readFloatPressure( void )
 	var2 = (((int64_t)calibration.dig_P8) * p_acc) >> 19;
 	p_acc = ((p_acc + var1 + var2) >> 8) + (((int64_t)calibration.dig_P7)<<4);
 	
-	return (float)p_acc / 256.0;
+	pressure = (float)p_acc / 256.0;
+	return pressure;
 	
 }
 
