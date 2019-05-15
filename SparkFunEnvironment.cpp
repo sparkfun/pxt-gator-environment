@@ -144,14 +144,7 @@ SensorCalibration calibration;
 //Constructor -- Specifies default configuration
 environment::environment( void )
 {
-	//These are deprecated BMEsettings
-	BMErunMode = 3; //Normal/Run
-	BMEtStandby = 0; //0.5ms
-	BMEfilter = 0; //Filter off
-	BMEtempOverSample = 1;
-	BMEpressOverSample = 1;
-	BMEhumidOverSample = 1;
-    BMEtempCorrection = 0.0; // correction of temperature - added to the result
+	
 }
 
 
@@ -168,6 +161,13 @@ void environment::begin()
 {
 	uBit.sleep(2);  //Make sure sensor had enough time to turn on. BME280 requires 2ms to start up.
 
+	BMErunMode = 3; //Normal/Run
+	BMEtStandby = 0; //0.5ms
+	BMEfilter = 0; //Filter off
+	BMEtempOverSample = 1;
+	BMEpressOverSample = 1;
+	BMEhumidOverSample = 1;
+    BMEtempCorrection = 0.0; // correction of temperature - added to the result
 	//Check communication with IC before anything else
 
 	//Reading all compensation data, range 0x88:A1, 0xE1:E7
