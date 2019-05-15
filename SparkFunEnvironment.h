@@ -115,7 +115,9 @@ class environment
     SensorSettings BMEsettings;
     SensorSettings CCSsettings;
 	SensorCalibration calibration;
-	int32_t t_fine;
+	int32_t t_fine;	
+	uint16_t tVOC = 0;
+	uint16_t CO2 = 0;
 	
 	//Constructor generates default SensorSettings.
 	//(over-ride after construction if desired)
@@ -185,8 +187,6 @@ class environment
 	void multiWriteRegister(uint8_t address, uint8_t offset, uint8_t *inputPointer, uint8_t length);
 private:
 	uint8_t checkSampleValue(uint8_t userValue); //Checks for valid over sample values
-	uint16_t tVOC = 0;
-	uint16_t CO2 = 0;
 
     uint8_t _wireType = HARD_WIRE; //Default to Wire.h
     MicroBitI2C *_hardPort = NO_WIRE; //The generic connection to user's chosen I2C hardware
