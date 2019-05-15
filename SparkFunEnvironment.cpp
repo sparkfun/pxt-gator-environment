@@ -92,6 +92,9 @@ static const char CCS811_SW_RESET = 0xFF;
 
 MicroBit uBit;
 
+
+uint16_t tVOC = 0;
+uint16_t CO2 = 0;
 //****************************************************************************//
 //
 //  BMEsettings and configuration

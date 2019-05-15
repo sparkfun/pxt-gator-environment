@@ -116,8 +116,6 @@ class environment
     SensorSettings CCSsettings;
 	SensorCalibration calibration;
 	int32_t t_fine;	
-	uint16_t tVOC = 0;
-	uint16_t CO2 = 0;
 	
 	//Constructor generates default SensorSettings.
 	//(over-ride after construction if desired)
