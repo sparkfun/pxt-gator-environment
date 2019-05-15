@@ -521,7 +521,7 @@ float environment::readFloatPressure( void )
 	var2 = (((int64_t)calibration.dig_P8) * p_acc) >> 19;
 	p_acc = ((p_acc + var1 + var2) >> 8) + (((int64_t)calibration.dig_P7)<<4);
 	
-	pressure = (float)p_acc / 256.0;
+	pressure = 64.89;//(float)p_acc / 256.0;
 	return pressure;
 	
 }
