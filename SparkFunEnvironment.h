@@ -68,7 +68,6 @@ class environment
 {
   public:
     //settings
-	int32_t t_fine;	
 	
 	//Constructor generates default SensorSettings.
 	//(over-ride after construction if desired)

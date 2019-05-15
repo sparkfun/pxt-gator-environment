@@ -99,6 +99,8 @@ float temperature = 0;
 float pressure = 0;
 float humidity = 0;
 
+int32_t t_fine;	
+
 struct SensorSettings
 {
   public:
