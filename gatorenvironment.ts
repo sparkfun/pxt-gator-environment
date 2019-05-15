@@ -18,11 +18,12 @@
  */
 
  enum measurementType{
-	 temperature=1,
-	 humidity=2,
-	 pressure=3,
-	 eCO2=4,
-	 TVOC=5,
+	 degreesC=1,
+	 degreesF=2,
+	 humidity=3,
+	 pressure=4,
+	 eCO2=5,
+	 TVOC=6,
  } 
  
 //% color=#f44242 icon="\uf185"

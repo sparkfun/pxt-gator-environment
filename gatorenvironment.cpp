@@ -44,19 +44,22 @@ namespace gatorEnvironment {
 				value = gatorEnvironmentCombo->readTempC();
 				break;
 			case 2:
-				value = gatorEnvironmentCombo->readFloatHumidity();
+				value = gatorEnvironmentCombo->readTempC();
 				break;
 			case 3:
-				value = gatorEnvironmentCombo->readFloatPressure();
+				value = gatorEnvironmentCombo->readFloatHumidity();
 				break;
 			case 4:
+				value = gatorEnvironmentCombo->readFloatPressure();
+				break;
+			case 5:
 				if (gatorEnvironmentCombo->dataAvailable())
 				{
 					gatorEnvironmentCombo->readAlgorithmResults();
 				}
 				value = gatorEnvironmentCombo->getCO2();
 				break;
-			case 5:
+			case 6:
 				if (gatorEnvironmentCombo->dataAvailable())
 				{
 					gatorEnvironmentCombo->readAlgorithmResults();
