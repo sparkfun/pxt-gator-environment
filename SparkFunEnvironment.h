@@ -134,17 +134,6 @@ private:
     MicroBitI2C *_hardPort = NO_WIRE; //The generic connection to user's chosen I2C hardware
 	
   	float _referencePressure = 101325.0; //Default but is changeable
-
-	//Main Interface and mode settings
-	
-	//Deprecated settings
-	uint8_t BMErunMode;
-	uint8_t BMEtStandby;
-	uint8_t BMEfilter;
-	uint8_t BMEtempOverSample;
-	uint8_t BMEpressOverSample;
-	uint8_t BMEhumidOverSample;
-    float BMEtempCorrection; // correction of temperature - added to the result
 };
 
 #endif  // End of __BME280_H__ definition check

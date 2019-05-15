@@ -133,7 +133,14 @@ struct SensorCalibration
 	int8_t dig_H6;
 };
 
-SensorCalibration calibration;
+SensorCalibration calibration;	
+uint8_t BMErunMode;
+uint8_t BMEtStandby;
+uint8_t BMEfilter;
+uint8_t BMEtempOverSample;
+uint8_t BMEpressOverSample;
+uint8_t BMEhumidOverSample;
+float BMEtempCorrection;
 
 //****************************************************************************//
 //
