@@ -222,13 +222,13 @@ void environment::begin()
 
 	//Most of the time the sensor will be init with default values
 	//But in case user has old/deprecated code, use the BMEsettings.x values
-	setStandbyTime(BMEsettings.tStandby);
-	setFilter(BMEsettings.filter);
-	setPressureOverSample(BMEsettings.pressOverSample); //Default of 1x oversample
-	setHumidityOverSample(BMEsettings.humidOverSample); //Default of 1x oversample
-	setTempOverSample(BMEsettings.tempOverSample); //Default of 1x oversample
+	setStandbyTime(0);
+	setFilter(0);
+	setPressureOverSample(1); //Default of 1x oversample
+	setHumidityOverSample(1); //Default of 1x oversample
+	setTempOverSample(1); //Default of 1x oversample
 	
-	setMode(MODE_NORMAL); //Go!
+	setMode(3); //Go!
 	
 	uint8_t data[4] = {0x11,0xE5,0x72,0x8A}; //Reset key
 	
