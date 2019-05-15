@@ -140,6 +140,7 @@ class environment
 	void setReferencePressure(float refPressure); //Allows user to set local sea level reference pressure
 	float getReferencePressure();
 	void readAlgorithmResults(void);
+	bool dataAvailable( void );
 	
 	uint16_t getTVOC( void );
 	uint16_t getCO2( void );

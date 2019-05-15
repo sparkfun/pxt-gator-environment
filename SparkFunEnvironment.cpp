@@ -270,6 +270,14 @@ uint16_t environment::getCO2( void )
 	return CO2;
 }
 
+//Checks to see if DATA_READ flag is set in the status register
+bool CCS811::dataAvailable( void )
+{
+	uint8_t value;
+	readRegister( CCS811_STATUS, &value );
+	return (value & 1 << 3);
+}
+
 //Gets the current mode bits in the ctrl_meas register
 //Mode 00 = Sleep
 // 01 and 10 = Forced
