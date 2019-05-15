@@ -44,11 +44,6 @@ TODO:
 #define HARD_WIRE 1
 #define SOFT_WIRE 2
 
-#define MODE_SLEEP 0b00
-#define MODE_FORCED 0b01
-#define MODE_NORMAL 0b11
-
-
 
 //Class SensorSettings.  This object is used to hold settings data.  The application
 //uses this classes' data directly.  The settings are adopted and sent to the sensor

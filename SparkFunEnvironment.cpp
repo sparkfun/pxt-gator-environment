@@ -90,6 +90,11 @@ static const char CCS811_ERROR_ID = 0xE0;
 static const char CCS811_APP_START = 0xF4;
 static const char CCS811_SW_RESET = 0xFF;
 
+
+static const char MODE_SLEEP = 0b00;
+static const char MODE_FORCED = 0b01;
+static const char MODE_NORMAL = 0b11;
+
 MicroBit uBit;
 
 
