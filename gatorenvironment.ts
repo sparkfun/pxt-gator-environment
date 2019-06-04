@@ -30,7 +30,7 @@
 namespace gatorEnvironment {
     // Functions for reading Particle from the gatorEnvironment in Particle or straight adv value
 	
-	//% weight=31 
+	//% weight=32 
 	//% blockId="gatorEnvironment_beginEnvironment" 
 	//% block="Initialize gator:Environment sensors"
 	//% shim=gatorEnvironment::beginEnvironment
@@ -38,7 +38,7 @@ namespace gatorEnvironment {
 		return
 	}
 	
-	//% weight=30
+	//% weight=31
 	//% blockId="gatorEnvironment_getMeasurement"
 	//% block="Get %measurementType | value"
 	//% shim=gatorEnvironment::getMeasurement
