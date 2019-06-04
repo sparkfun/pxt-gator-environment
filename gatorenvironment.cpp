@@ -16,7 +16,6 @@
 
 #include "pxt.h"
 #include <cstdint>
-#include <math.h>
 #include "SparkFunEnvironment.h"
 
 using namespace pxt;
