@@ -166,6 +166,7 @@ environment::environment( void )
 //****************************************************************************//
 void environment::begin()
 {
+	uBit.init();
 	uBit.sleep(2);  //Make sure sensor had enough time to turn on. BME280 requires 2ms to start up.
 
 	BMErunMode = 3; //Normal/Run
