@@ -26,7 +26,7 @@
 	 TVOC=6,
  } 
  
-//% color=#f44242 icon="\uf185"
+//% color=#f44242 icon="\uf0c2"
 namespace gatorEnvironment {
     // Functions for reading Particle from the gatorEnvironment in Particle or straight adv value
 	
