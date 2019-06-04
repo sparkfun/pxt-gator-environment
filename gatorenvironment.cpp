@@ -29,7 +29,7 @@ namespace gatorEnvironment {
 	* Initializes the particle sensor
 	*/
 	//%
-	void begin()
+	void beginEnvironment()
 	{
 		gatorEnvironmentCombo->begin();
 	}

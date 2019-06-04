@@ -33,8 +33,8 @@ namespace gatorEnvironment {
 	//% weight=31 
 	//% blockId="gatorEnvironment_begin" 
 	//% block="Initialize gator:Environment sensors"
-	//% shim=gatorEnvironment::begin
-	export function begin(){
+	//% shim=gatorEnvironment::beginEnvironment
+	export function beginEnvironment(){
 		return
 	}
 	
