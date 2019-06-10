@@ -5,7 +5,7 @@
 The gator:environment, capable of reading several qualities about the air can be purchased [here.](https://www.sparkfun.com/products/15269)
 The gator:light, included on the gator:starter is an analog light sensor that can be alligator clipped to the micro:bit or gator:bit board.
 
-![SparkFun gator:light](https://raw.githubusercontent.com/sparkfun/pxt-gator-light/master/icon.png)  
+![SparkFun gator:light](https://raw.githubusercontent.com/sparkfun/pxt-gator-environment/master/icon.png)  
 
 ## ~ hint
 
