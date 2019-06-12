@@ -27,7 +27,7 @@ Distributed as-is; no warranty is given.
 #include "MicroBit.h"
 #endif
 
-static MicroBit uBit;
+static MicroBitI2C i2c(I2C_SDA0, I2C_SCL0);
 
 //Register names:
 static const char BME280_ADDRESS			=		0xEE;
@@ -168,8 +168,6 @@ environment::environment( void )
 //****************************************************************************//
 void environment::begin()
 {
-	uBit.sleep(2);  //Make sure sensor had enough time to turn on. BME280 requires 2ms to start up.
-
 	BMErunMode = 3; //Normal/Run
 	BMEtStandby = 0; //0.5ms
 	BMEfilter = 0; //Filter off
@@ -231,7 +229,7 @@ void environment::begin()
 	
 	appValid();
 	//Write 0 bytes to this register to start app
-	uBit.i2c.write(CCS811_ADDRESS, &CCS811_APP_START, 1);
+	i2c.write(CCS811_ADDRESS, &CCS811_APP_START, 1);
 	//Added from issue 6
 	// Without a delay here, the CCS811 and I2C can be put in a bad state.
 	// Seems to work with 50us delay, but make a bit longer to be sure.
@@ -638,12 +636,12 @@ double environment::dewPointF(void)
 //****************************************************************************//
 void environment::readRegisterRegion(uint8_t address, uint8_t *outputPointer , uint8_t offset, uint8_t length)
 {
-	uBit.i2c.readRegister(address, offset, outputPointer, length);	
+	i2c.readRegister(address, offset, outputPointer, length);	
 }
 
 uint8_t environment::readRegister(uint8_t address, uint8_t offset)
 {
-	return uBit.i2c.readRegister(address, offset);
+	return i2c.readRegister(address, offset);
 }
 
 int16_t environment::readRegisterInt16(uint8_t address, uint8_t offset )
@@ -658,7 +656,7 @@ int16_t environment::readRegisterInt16(uint8_t address, uint8_t offset )
 
 void environment::writeRegister(uint8_t address, uint8_t offset, uint8_t dataToWrite)
 {
-	uBit.i2c.writeRegister(address, offset, dataToWrite);
+	i2c.writeRegister(address, offset, dataToWrite);
 }
 
 void environment::multiWriteRegister(uint8_t address, uint8_t offset, uint8_t *inputPointer, uint8_t length)
@@ -667,5 +665,5 @@ void environment::multiWriteRegister(uint8_t address, uint8_t offset, uint8_t *i
 	char temp[realLength];
 	temp[0] = offset;
 	memcpy(&temp[1], inputPointer, length); //tempLong is 4 bytes, we only need 3
-	uBit.i2c.write(address, temp, realLength);
+	i2c.write(address, temp, realLength);
 }
