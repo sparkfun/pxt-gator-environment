@@ -26,16 +26,10 @@ TODO:
 
 ******************************************************************************/
 
-// Test derived class for base class SparkFunIMU
-#ifndef __ENVIRONMENT_H__
-#define __ENVIRONMENT_H__
-
+#ifndef __MBED_H_
+#define __MBED_H_
 #include "mbed.h"
-#include "MicroBit.h"
-
-//Uncomment the following line to enable software I2C
-//You will need to have the SoftwareWire library installed
-//#include <SoftwareWire.h> //SoftwareWire by Testato. Installed from library manager.
+#endif
 
 #define I2C_MODE 0
 #define SPI_MODE 1
@@ -43,18 +37,6 @@ TODO:
 #define NO_WIRE 0
 #define HARD_WIRE 1
 #define SOFT_WIRE 2
-
-//Class SensorSettings.  This object is used to hold settings data.  The application
-//uses this classes' data directly.  The settings are adopted and sent to the sensor
-//at special times, such as .begin.  Some are used for doing math.
-//
-//This is a kind of bloated way to do this.  The trade-off is that the user doesn't
-//need to deal with #defines or enums with bizarre names.
-//
-//A power user would strip out SensorSettings entirely, and send specific read and
-//write command directly to the IC. (ST #defines below)
-//
-
 
 //This is the main operational class of the driver.
 
@@ -131,9 +113,6 @@ private:
 	uint8_t checkSampleValue(uint8_t userValue); //Checks for valid over sample values
 
     uint8_t _wireType = HARD_WIRE; //Default to Wire.h
-    MicroBitI2C *_hardPort = NO_WIRE; //The generic connection to user's chosen I2C hardware
 	
   	float _referencePressure = 101325.0; //Default but is changeable
 };
-
-#endif  // End of __BME280_H__ definition check

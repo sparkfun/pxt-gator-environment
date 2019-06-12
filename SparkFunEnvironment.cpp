@@ -21,8 +21,12 @@ Distributed as-is; no warranty is given.
 //See SparkFunBME280.h for additional topology notes.
 
 #include "SparkFunEnvironment.h"
-#include "mbed.h"
+
+#ifndef __MICROBIT_H_
+#define __MICROBIT_H_
 #include "MicroBit.h"
+MicroBit uBit;
+#endif
 
 //Register names:
 static const char BME280_ADDRESS			=		0xEE;
@@ -94,9 +98,6 @@ static const char CCS811_SW_RESET = 0xFF;
 static const char MODE_SLEEP = 0b00;
 static const char MODE_FORCED = 0b01;
 static const char MODE_NORMAL = 0b11;
-
-MicroBit uBit;
-
 
 uint16_t tVOC = 0;
 uint16_t CO2 = 0;
