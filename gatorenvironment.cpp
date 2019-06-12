@@ -23,10 +23,7 @@ using namespace pxt;
 namespace gatorEnvironment {
 	//MicroBitI2C i2c(I2C_SDA0, I2C_SCL0);
 	environment *gatorEnvironmentCombo; //BME280 handles our Temp, pressure, and humidity
-	
-	/*
-	* Initializes the particle sensor
-	*/
+
 	//%
 	void beginEnvironment()
 	{

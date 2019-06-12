@@ -25,8 +25,9 @@ Distributed as-is; no warranty is given.
 #ifndef __MICROBIT_H_
 #define __MICROBIT_H_
 #include "MicroBit.h"
-MicroBit uBit;
 #endif
+
+static MicroBit uBit;
 
 //Register names:
 static const char BME280_ADDRESS			=		0xEE;
