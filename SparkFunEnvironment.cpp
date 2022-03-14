@@ -27,11 +27,6 @@ Distributed as-is; no warranty is given.
 #include "MicroBit.h"
 #endif
 
-// #if MICROBIT_CODAL
-// #define i2c uBit.i2c
-// #else
-// static MicroBitI2C i2c(I2C_SDA0, I2C_SCL0);
-// #endif
 
 //Register names:
 static const char BME280_ADDRESS			=		0xEE;
@@ -234,17 +229,18 @@ void environment::begin()
 	appValid();
 	//Write 0 bytes to this register to start app
 
-	// MicroBitI2C read has different parameter defs between two versions. Seems really sensitive to types: Review this...
 #if MICROBIT_CODAL
+	// MicroBitI2C read has different parameter defs between two versions. Seems really sensitive to types (compiler setting)
+	// CODAL signature
 	// write(uint16_t address, uint8_t *data, int len, bool repeated)
-	uint8_t data2 = CCS811_APP_START;
-	uBit.i2c.write(CCS811_ADDRESS, &data2, 1);
+	uint8_t data2[] = {CCS811_APP_START};
 #else 
+	// DAL signature
 	// write(int address, const char *data, int length, bool repeated = false);
-	char data2 = CCS811_APP_START;
-	const char *data3 = &data2;
-	uBit.i2c.write(CCS811_ADDRESS, data3, 1);
+	char data2[] = {CCS811_APP_START};
 #endif
+	uBit.i2c.write(CCS811_ADDRESS, data2, 1);
+
 	//Added from issue 6
 	// Without a delay here, the CCS811 and I2C can be put in a bad state.
 	// Seems to work with 50us delay, but make a bit longer to be sure.
