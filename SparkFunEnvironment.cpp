@@ -233,13 +233,12 @@ void environment::begin()
 	// MicroBitI2C read has different parameter defs between two versions. Seems really sensitive to types (compiler setting)
 	// CODAL signature
 	// write(uint16_t address, uint8_t *data, int len, bool repeated)
-	uint8_t data2[] = {CCS811_APP_START};
+	uBit.i2c.write(CCS811_ADDRESS, (uint8_t *)&CCS811_APP_START, 1);
 #else 
 	// DAL signature
 	// write(int address, const char *data, int length, bool repeated = false);
-	char data2[] = {CCS811_APP_START};
+	uBit.i2c.write(CCS811_ADDRESS, &CCS811_APP_START, 1);
 #endif
-	uBit.i2c.write(CCS811_ADDRESS, data2, 1);
 
 	//Added from issue 6
 	// Without a delay here, the CCS811 and I2C can be put in a bad state.
