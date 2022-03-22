@@ -27,7 +27,6 @@ Distributed as-is; no warranty is given.
 #include "MicroBit.h"
 #endif
 
-static MicroBitI2C i2c(I2C_SDA0, I2C_SCL0);
 
 //Register names:
 static const char BME280_ADDRESS			=		0xEE;
@@ -229,7 +228,18 @@ void environment::begin()
 	
 	appValid();
 	//Write 0 bytes to this register to start app
-	i2c.write(CCS811_ADDRESS, &CCS811_APP_START, 1);
+
+#if MICROBIT_CODAL
+	// MicroBitI2C read has different parameter defs between two versions. Seems really sensitive to types (compiler setting)
+	// CODAL signature
+	// write(uint16_t address, uint8_t *data, int len, bool repeated)
+	uBit.i2c.write(CCS811_ADDRESS, (uint8_t *)&CCS811_APP_START, 1);
+#else 
+	// DAL signature
+	// write(int address, const char *data, int length, bool repeated = false);
+	uBit.i2c.write(CCS811_ADDRESS, &CCS811_APP_START, 1);
+#endif
+
 	//Added from issue 6
 	// Without a delay here, the CCS811 and I2C can be put in a bad state.
 	// Seems to work with 50us delay, but make a bit longer to be sure.
@@ -636,12 +646,16 @@ double environment::dewPointF(void)
 //****************************************************************************//
 void environment::readRegisterRegion(uint8_t address, uint8_t *outputPointer , uint8_t offset, uint8_t length)
 {
-	i2c.readRegister(address, offset, outputPointer, length);	
+//	i2c.readRegister(address, offset, outputPointer, length);	
+	uBit.i2c.readRegister(address, offset, outputPointer, length);	
 }
 
 uint8_t environment::readRegister(uint8_t address, uint8_t offset)
 {
-	return i2c.readRegister(address, offset);
+//	return i2c.readRegister(address, offset);
+	uint8_t data;
+	uBit.i2c.readRegister(address, offset, &data, 1);
+	return data;
 }
 
 int16_t environment::readRegisterInt16(uint8_t address, uint8_t offset )
@@ -656,14 +670,20 @@ int16_t environment::readRegisterInt16(uint8_t address, uint8_t offset )
 
 void environment::writeRegister(uint8_t address, uint8_t offset, uint8_t dataToWrite)
 {
-	i2c.writeRegister(address, offset, dataToWrite);
+//	i2c.writeRegister(address, offset, dataToWrite);
+	uBit.i2c.writeRegister(address, offset, dataToWrite);
 }
 
 void environment::multiWriteRegister(uint8_t address, uint8_t offset, uint8_t *inputPointer, uint8_t length)
 {
 	uint8_t realLength = length + 1;
+#if MICROBIT_CODAL
+	uint8_t temp[realLength];
+#else 
 	char temp[realLength];
+#endif
 	temp[0] = offset;
 	memcpy(&temp[1], inputPointer, length); //tempLong is 4 bytes, we only need 3
-	i2c.write(address, temp, realLength);
+//	i2c.write(address, temp, realLength);
+	uBit.i2c.write(address, temp, realLength);
 }

@@ -26,10 +26,9 @@ TODO:
 
 ******************************************************************************/
 
-#ifndef __MBED_H_
-#define __MBED_H_
-#include "mbed.h"
-#endif
+
+#include "pxt.h"
+
 
 #define I2C_MODE 0
 #define SPI_MODE 1
