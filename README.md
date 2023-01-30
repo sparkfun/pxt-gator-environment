@@ -9,7 +9,7 @@ The gator:light, included on the gator:starter is an analog light sensor that ca
 
 ## ~ hint
 
-To use this package, go to https://makecode.microbit.org, click ``Add package`` and search for **gator-light**. The package is located [here](https://makecode.microbit.org/pkg/sparkfun/pxt-gator-light)
+To use this package, go to https://makecode.microbit.org, click ``Add package`` and search for **gator-environment**. The package is located [here](https://makecode.microbit.org/pkg/sparkfun/pxt-gator-environment)
 
 ## ~
 
@@ -24,7 +24,7 @@ Use ``||Use Initialize gator:Environment sensors||`` to initialize the sensors o
 
 ```blocks
 //Use getMeasurement to grab data from any of the sensors channels.
-gatorEnvironment.getMeasurement(measurementType.degreesC)
+gatorEnvironment.getMeasurement(MeasurementType.degreesC)
 ```
 
 Use ``||Get degreesC value||`` to grab values from the board. Changing what value you want is as easy as selecting it from the drop down menu.
@@ -35,7 +35,7 @@ Use ``||Get degreesC value||`` to grab values from the board. Changing what valu
 //Read degrees celsius and write it to the micro:bit screen as a number
 gatorEnvironment.beginEnvironment()
 basic.forever(function () {
-    serial.writeLine("" + gatorEnvironment.getMeasurement(measurementType.degreesC))
+    serial.writeLine("" + gatorEnvironment.getMeasurement(MeasurementType.degreesC))
 })
 ```
 
@@ -48,5 +48,5 @@ basic.forever(function () {
 MIT
 
 ```package
-gatorParticle=github:sparkfun/pxt-gator-particle
+gatorEnvironment=github:sparkfun/pxt-gator-environment
 ```
