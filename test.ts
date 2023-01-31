@@ -19,10 +19,10 @@
 
 gatorEnvironment.beginEnvironment()
 basic.forever(function () {
-    serial.writeLine("" + gatorEnvironment.getMeasurement(measurementType.degreesC))
-    serial.writeLine("" + gatorEnvironment.getMeasurement(measurementType.degreesF))
-    serial.writeLine("" + gatorEnvironment.getMeasurement(measurementType.humidity))
-    serial.writeLine("" + gatorEnvironment.getMeasurement(measurementType.pressure))
-    serial.writeLine("" + gatorEnvironment.getMeasurement(measurementType.eCO2))
-    serial.writeLine("" + gatorEnvironment.getMeasurement(measurementType.TVOC))
+    serial.writeLine("" + gatorEnvironment.getMeasurement(MeasurementType.degreesC))
+    serial.writeLine("" + gatorEnvironment.getMeasurement(MeasurementType.degreesF))
+    serial.writeLine("" + gatorEnvironment.getMeasurement(MeasurementType.humidity))
+    serial.writeLine("" + gatorEnvironment.getMeasurement(MeasurementType.pressure))
+    serial.writeLine("" + gatorEnvironment.getMeasurement(MeasurementType.eCO2))
+    serial.writeLine("" + gatorEnvironment.getMeasurement(MeasurementType.TVOC))
 })

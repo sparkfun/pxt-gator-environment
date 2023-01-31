@@ -1,12 +1,10 @@
 {
     "name": "gatorEnvironment",
-    "version": "1.1.1",
-    "description": "SparkFun gator:Particle Particle Sensor",
+    "version": "1.1.2",
+    "description": "SparkFun gator:Environment Sensor",
     "license": "MIT",
     "dependencies": {
-        "core": "*",
-        "radio": "*",
-        "microphone": "*"
+        "core": "*"
     },
     "files": [
         "main.blocks",

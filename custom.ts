@@ -9,7 +9,7 @@
 /**
  * Functions to operate the gatorEnvironment sensor
  */
-enum measurementType {
+enum MeasurementType {
     degreesC = 1,
     degreesF = 2,
     humidity = 3,
@@ -39,8 +39,8 @@ namespace gatorEnvironment {
     */
     //% weight=31
     //% blockId="gatorEnvironment_getMeasurement"
-    //% block="get %measurementType | value"
-    export function getMeasurement(type: measurementType): number {
+    //% block="get %MeasurementType | value"
+    export function getMeasurement(type: MeasurementType): number {
         let value = 0;
         switch (type) {
             case 1:
