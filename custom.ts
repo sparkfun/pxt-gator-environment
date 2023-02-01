@@ -38,9 +38,9 @@ namespace gatorEnvironment {
     * Grab the temperature, humidity, pressure, equivalent C02, or total Volatile Organic Compounds from the gator:environment
     */
     //% weight=31
-    //% blockId="gatorEnvironment_getMeasurement"
+    //% blockId="gatorEnvironment_measurement"
     //% block="get %MeasurementType | value"
-    export function getMeasurement(type: MeasurementType): number {
+    export function measurement(type: MeasurementType): number {
         let value = 0;
         switch (type) {
             case 1:
