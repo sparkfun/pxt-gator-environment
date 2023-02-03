@@ -39,7 +39,7 @@ namespace gatorEnvironment {
     */
     //% weight=31
     //% blockId="gatorEnvironment_measurement"
-    //% block="get %MeasurementType | value"
+    //% block="%MeasurementType | value"
     export function measurement(type: MeasurementType): number {
         let value = 0;
         switch (type) {
