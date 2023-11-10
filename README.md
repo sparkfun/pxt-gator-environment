@@ -7,7 +7,7 @@ The gator:environment, capable of reading several qualities about the air can be
 
 ## ~ hint
 
-To use this package, go to https://makecode.microbit.org, click ``Add package`` and search for **gator-environment**. The package is located [here](https://makecode.microbit.org/pkg/sparkfun/pxt-gator-environment)
+To use this package, go to https://makecode.microbit.org, click ``Add package`` and search for **gator-environment**. The package is located [here](https://cdn.sparkfun.com/assets/learn_tutorials/8/7/3/pxt-gator-environment-package.hex)
 
 ## ~
 
@@ -21,11 +21,11 @@ gatorEnvironment.beginEnvironment()
 Use ``||Use Initialize gator:Environment sensors||`` to initialize the sensors on the gator:Environment board.
 
 ```blocks
-//Use getMeasurement to grab data from any of the sensors channels.
-gatorEnvironment.getMeasurement(MeasurementType.degreesC)
+//Use measurement to grab data from any of the sensors channels.
+gatorEnvironment.measurement(MeasurementType.degreesC)
 ```
 
-Use ``||Get degreesC value||`` to grab values from the board. Changing what value you want is as easy as selecting it from the drop down menu.
+Use ``||degreesC value||`` to grab values from the board. Changing what value you want is as easy as selecting it from the drop down menu.
 
 ## Example: Thermometer
 
@@ -33,7 +33,7 @@ Use ``||Get degreesC value||`` to grab values from the board. Changing what valu
 //Read degrees celsius and write it to the micro:bit screen as a number
 gatorEnvironment.beginEnvironment()
 basic.forever(function () {
-    serial.writeLine("" + gatorEnvironment.getMeasurement(MeasurementType.degreesC))
+    serial.writeLine("" + gatorEnvironment.measurement(MeasurementType.degreesC))
 })
 ```
 
